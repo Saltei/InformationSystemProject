@@ -9,7 +9,7 @@ CREATE TABLE media (
     stock INT DEFAULT 0
 );
 
--- Supplements like FBS, L-glutamine, etc.
+-- Supplements like FBS, L-glutamine
 CREATE TABLE supplements (
     supplement_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -18,12 +18,12 @@ CREATE TABLE supplements (
     stock INT DEFAULT 0
 );
 
--- Many-to-many relationship: which supplement is used in which media
+-- which supplement is used in which media
 CREATE TABLE media_supplements (
     id INT AUTO_INCREMENT PRIMARY KEY,
     media_id INT,
     supplement_id INT,
-    amount_used VARCHAR(50), -- e.g. "10%", "2 mM"
+    amount_used VARCHAR(50),
     FOREIGN KEY (media_id) REFERENCES media(media_id) ON DELETE CASCADE,
     FOREIGN KEY (supplement_id) REFERENCES supplements(supplement_id) ON DELETE CASCADE
 );
